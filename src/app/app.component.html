@@ -1,0 +1,82 @@
+<mat-tab-group>
+  <mat-tab label="Scenario 1 - Object mutation">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="heading">Scenario</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="description">
+          <div>- A parent component containing a User object with 2 child components displaying the name property of the
+            User object.
+          </div>
+          <div>- The parent component passes the User object to the children via the Input interface.</div>
+          <div>- The first child component uses the default change detection, the second uses OnPush</div>
+        </div>
+        <app-parent-no-store class="parent-component"></app-parent-no-store>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="heading">Solution 1</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="description">
+          Creating a new object instead of mutating the existing one
+        </div>
+        <app-parent-no-mutation class="parent-component"></app-parent-no-mutation>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="heading">Solution 2</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="description">
+          Using NgRx store to avoid object mutation
+        </div>
+        <app-parent-default-subscription class="parent-component"></app-parent-default-subscription>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+  <mat-tab label="Scenario 2 - Dependencies">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="heading">Scenario</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="description">
+          <div>- A parent component containing a User object with 3 child components displaying the name property of the
+            User object.
+          </div>
+          <div>- For the first two child components the parent passes the User object to the children via the Input
+            interface.
+          </div>
+          <div>- The first child component uses the default change detection, the second uses OnPush.</div>
+          <div>- The third child component uses the same service as the parent and uses a subscription to listen for
+            changes in
+            the User object.
+          </div>
+        </div>
+        <app-parent-push-subscription class="parent-component"></app-parent-push-subscription>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="heading">Solution</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          By using the async pipe and its in-built change detection instead of a subscription we make sure this child
+          component is updated as well.
+        </p>
+        <app-parent-push-pipe class="parent-component"></app-parent-push-pipe>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+</mat-tab-group>
+
+

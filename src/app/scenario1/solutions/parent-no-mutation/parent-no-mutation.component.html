@@ -1,0 +1,39 @@
+<div class="heading">Parent</div>
+<div class="description">ChangeDetection.Default, No object mutation</div>
+
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput [formControl]="name"/>
+</mat-form-field>
+
+<button mat-stroked-button
+        [disabled]="name.pristine || name.invalid || name.value === ''"
+        (click)="updateUser(name?.value)">
+  Update
+</button>
+
+<div class="flex-container">
+  <div class="flex-tile">
+    <div>
+      <div class="heading">Parent</div>
+    </div>
+    <div>
+      Name:
+      <span class="name"
+            [class.defined]="!!user?.name">
+        {{ user?.name || 'undefined'}}
+    </span>
+    </div>
+  </div>
+  <app-child-default-detection [user]="user" class="flex-tile"></app-child-default-detection>
+  <app-child-push-detection [user]="user" class="flex-tile"></app-child-push-detection>
+</div>
+<mat-card *ngIf="user?.name" class="result positive">
+  <div>By creating a new object the object reference will change and the child component will also detect changes made to object properties</div>
+  <mat-card class="code-snippet">
+    <div>this.user = &#123;</div>
+    <div>&nbsp;&nbsp;&nbsp;...this.user,</div>
+    <div>&nbsp;&nbsp;&nbsp;name: name</div>
+    <div>&#125;</div>
+  </mat-card>
+</mat-card>

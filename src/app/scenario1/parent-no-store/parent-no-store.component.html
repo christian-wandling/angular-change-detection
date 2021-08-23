@@ -1,0 +1,38 @@
+<div class="heading">Parent</div>
+<div class="description">ChangeDetection.Default, object mutation</div>
+
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput [formControl]="name"/>
+</mat-form-field>
+
+<button mat-stroked-button
+        [disabled]="name.pristine || name.invalid || name.value === ''"
+        (click)="updateUser(name?.value)">
+  Update
+</button>
+
+<div class="flex-container">
+  <div class="flex-tile">
+    <div>
+      <div class="heading">Parent</div>
+    </div>
+    <div>
+      Name:
+      <span class="name"
+            [class.defined]="!!user?.name">
+        {{ user?.name || 'undefined'}}
+    </span>
+    </div>
+  </div>
+  <app-child-default-detection [user]="user" class="flex-tile"></app-child-default-detection>
+  <app-child-push-detection [user]="user" class="flex-tile"></app-child-push-detection>
+</div>
+<mat-card *ngIf="user?.name" class="result">
+  <div>Both the parent and the child with default change detection display the name now but the child component with onPush doesn't.</div>
+  <div>The reason for this is that OnPush exempts the component from the global change detection.</div>
+  <div>Only its Input interface is checked but since we updated the property by mutating the object its reference didn't change so there is no change detected.</div>
+  <mat-card class="code-snippet">
+    <div>this.user.name = name;</div>
+  </mat-card>
+</mat-card>

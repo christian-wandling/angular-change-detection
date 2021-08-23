@@ -1,0 +1,51 @@
+<div class="heading">Parent</div>
+<div class="description">Store, ChangeDetection.Default, Subscription</div>
+
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput [formControl]="name"/>
+</mat-form-field>
+
+<button mat-stroked-button
+        (click)="updateUser(name?.value)"
+        [disabled]="name.pristine || name.invalid || name.value === ''">
+  Update
+</button>
+
+<div class="flex-container">
+  <div class="flex-tile">
+    <div>
+      <div class="heading">Parent</div>
+      <div class="description">Store, ChangeDetection.Default, Subscription</div>
+    </div>
+    <div>
+      Name:
+      <span class="name"
+            [class.defined]="!!user?.name">
+        {{ user?.name || 'undefined'}}
+    </span>
+    </div>
+  </div>
+  <app-child-default-detection [user]="user" class="flex-tile"></app-child-default-detection>
+  <app-child-push-detection [user]="user" class="flex-tile"></app-child-push-detection>
+  <app-child-push-subscription class="flex-tile"></app-child-push-subscription>
+</div>
+
+<mat-card *ngIf="user?.name" class="result">
+  <div>The parent as well as the first two child components are updated.</div>
+  <div>But in the third component we are listening to changes in Store but since we are using OnPush only changes in the
+    Input interface will be evaluated.
+  </div>
+  <mat-card class="code-snippet">
+    <div>constructor(</div>
+    <div>&nbsp;&nbsp;&nbsp;private readonly userService: UserService</div>
+    <div>)&nbsp;&#123;&#125;</div>
+  </mat-card>
+  <mat-card class="code-snippet">
+    <div>this.userService.getUserPushWithSubscription().pipe(</div>
+    <div>&nbsp;&nbsp;&nbsp;takeUntil(this.destroy$)</div>
+    <div>).subscribe(user => this.user = user)</div>
+  </mat-card>
+</mat-card>
+
+

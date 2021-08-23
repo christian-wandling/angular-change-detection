@@ -1,0 +1,42 @@
+<div class="heading">Parent</div>
+<div class="description">Store, ChangeDetection.Default, Subscription</div>
+
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput [formControl]="name"/>
+</mat-form-field>
+
+<button mat-stroked-button
+        [disabled]="name.pristine || name.invalid || name.value === ''"
+        (click)="updateUser(name?.value)">
+  Update
+</button>
+
+<div class="flex-container">
+  <div class="flex-tile">
+    <div>
+      <div class="heading">Parent</div>
+      <div class="description">Store, ChangeDetection.Default, Subscription</div>
+    </div>
+    <div>
+      Name:
+      <span class="name"
+            [class.defined]="!!user?.name">
+        {{ user?.name || 'undefined'}}
+    </span>
+    </div>
+  </div>
+  <app-child-default-detection [user]="user" class="flex-tile"></app-child-default-detection>
+  <app-child-push-detection [user]="user" class="flex-tile"></app-child-push-detection>
+</div>
+<mat-card *ngIf="user?.name" class="result positive">
+  <div>By dispatching an action to the store we can rely on Redux for not doing object mutations. Every change we do in the store will return a fresh object</div>
+  <mat-card class="code-snippet">
+    <div>this.userService.updateNameDefaultSubscription(name)</div>
+  </mat-card>
+  <mat-card class="code-snippet">
+    <div>this.userService.getUserDefaultWithSubscription().pipe(</div>
+    <div>&nbsp;&nbsp;&nbsp;takeUntil(this.destroy$)</div>
+    <div>).subscribe(user => this.user = user)</div>
+  </mat-card>
+</mat-card>

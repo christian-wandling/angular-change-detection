@@ -1,0 +1,79 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #DEDEDE;
+}
+
+.parent-component {
+  display: block;
+  background: #EDEDED;
+  border: 2px solid #444;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem 0;
+
+  mat-form-field {
+    margin: 1rem;
+  }
+
+  button {
+    margin: 1rem;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row;
+  }
+}
+
+.flex-tile {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  width: calc(50% - 2rem);
+  border: 2px solid #444;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 0 0.5rem;
+  background: #FFF;
+
+  .name {
+    color: darkred;
+    font-weight: bold;
+  }
+
+  .name.defined {
+    color: darkgreen;
+  }
+}
+
+.heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.description {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.result {
+  margin: 1rem 0.5rem 0.5rem;
+  background: rgba(255,0,0,0.25);
+  color: #333;
+
+  &.positive {
+    background: rgba(0,255,0,0.25);
+  }
+}
+
+.code-snippet {
+  margin: 1rem 0 !important;
+  font-family: monospace;
+}
+

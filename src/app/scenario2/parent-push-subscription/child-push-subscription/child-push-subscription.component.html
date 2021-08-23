@@ -1,0 +1,11 @@
+<div>
+  <div class="heading">Parent</div>
+  <div class="description">Store, ChangeDetection.OnPush, Subscription</div>
+</div>
+<div>
+  Name:
+  <span class="name"
+        [class.defined]="!!user?.name">
+        {{ user?.name || 'undefined'}}
+    </span>
+</div>

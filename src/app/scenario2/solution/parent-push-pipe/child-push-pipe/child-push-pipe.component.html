@@ -1,0 +1,15 @@
+<ng-container *ngIf="user$ | async  as user">
+  <div>
+    <div class="heading">Child</div>
+    <div class="description">Store, ChangeDetection.OnPush, Async-Pipe</div>
+  </div>
+  <div>
+    Name:
+    <span class="name"
+          [class.defined]="!!user?.name">
+        {{ user?.name || 'undefined'}}
+    </span>
+  </div>
+</ng-container>
+
+

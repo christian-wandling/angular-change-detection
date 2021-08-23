@@ -1,0 +1,11 @@
+<div>
+  <div class="heading">Child</div>
+  <div class="description">ChangeDetection.Default</div>
+</div>
+<div>
+  Name:
+  <span class="name"
+        [class.defined]="!!user?.name">
+        {{ user?.name || 'undefined'}}
+    </span>
+</div>
