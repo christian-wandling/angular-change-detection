@@ -1,6 +1,12 @@
-# CdPush
+# Angular Change Detection - Solving common problems with ChangeDetection.OnPush
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
+
+## Stackblitz
+
+This project is also available on stackblitz
+
+https://stackblitz.com/edit/angular-change-detection-on-push-common-problems
 
 ## Development server
 
